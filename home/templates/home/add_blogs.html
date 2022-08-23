@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load bootstrap5 %} {% block title %} e-payment
+{%endblock %} {% block content %}
+
+<div class="container w-70 mb-5">
+  <div class="container mb-5">
+    <div class="card">
+      <h3 class="card-header">Create Blog</h3>
+      <div class="card-body">
+        <form action="/add_blogs/" enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          <div class="container mt-4">
+            {{ form.as_p }}
+            <button class="btn btn-primary">Add Blog</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

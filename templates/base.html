@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% load static %}{% load bootstrap5 %}
+<html>
+  <head>
+    {# Load CSS and JavaScript #} {% bootstrap_css %} {% bootstrap_javascript %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="static/bootstrap5/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap5/css/bootstrap.min.css' %}"
+    />
+    <script src="{% static 'htmx.min.js' %}" defer></script>
+    <script src="{% static 'css/bootstrap5/js/bootstrap.min.js' %}"></script>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">G7 Tech</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="container mx-3"></div>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="container-fluid row mx-3">
+            <div class="col-md-6">
+              <ul class="navbar-nav align-conten-right me-auto mb-2 mb-lg-0">
+                <li>
+                  <a
+                    class="nav-link {% block homeactive %} {% endblock homeactive %}"
+                    aria-current="page"
+                    href="/"
+                    >Home</a
+                  >
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a
+                    class="nav-link {% block add_blogs_active %} {% endblock add_blogs_active %}"
+                    href="/blogs/"
+                    >Add Blogs</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="navbar-nav d-flex justify-content-end">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Hello {{request.user}}</a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link {% block profileactive %} {% endblock profileactive %}"
+                    href="/profile/"
+                    >Profile</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout/">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a
+                    class="nav-link {% block registeractive %} {% endblock registeractive %}"
+                    href="/register/"
+                    >Register</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link {% block loginactive %} {% endblock loginactive %}"
+                    href="/login/"
+                    >Login</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main role="main" class="pb-3">{% block content %}{% endblock %}</main>
+    <script src="" async defer></script>
+  </body>
+</html>
